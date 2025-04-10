@@ -1,7 +1,7 @@
-// import postModel from '../model/post.model.js';
 import User from '../model/user.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import Bet from '../model/bet.model.js';
 
 export const assign = async (req, res) => {
     const { leaderId, userIds } = req.body;
@@ -144,6 +144,45 @@ export const login = async (req,res)=>{
 
   return res.status(200).json({
     message: 'Login successful',
+  });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+  
+}; 
+
+export const getUserBet = async (req, res) => {
+  console.log("Asfmkamdkamksamklamkldmaskld");
+
+  const { id } = req.params;
+  console.log(id);  
+  try {
+    const bets = await Bet.find({ userId: id});
+console.log('bets ' , bets)    ; 
+    if (!bets || bets.length === 0) {
+      return res.status(200).json({ message: 'No bets found for this user' });
+    }
+    res.status(200).json({
+      message: 'All bets placed by user',
+      bets,
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+export const getUserTransaction = async (req,res)=>{
+  const { id } = req.params;
+  try {
+  const userid = id;
+  const user = await User.findOne({ _id: userid}).populate('walletId');
+  if (!user) return res.status(404).json({ message: 'User not found' });
+
+  return res.status(200).json({
+    message: 'Sending data successful',
+    transactions: user.walletId.transactions,
   });
 
   } catch (error) {

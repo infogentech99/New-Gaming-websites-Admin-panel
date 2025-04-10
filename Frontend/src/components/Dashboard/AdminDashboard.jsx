@@ -3,6 +3,7 @@ import AssignUsersToLeader from '../../Model/AssignUsersToLeader';
 import EditUser from '../../Model/EditUser';
 import CreateUser from '../../Model/CreateUser';
 import DepositWithdrawModal from '../../Model/DepositWithdrawModal';
+import UserDetailsModal from '../../Model/UserDetailsModal';
 
 
 const AdminDashboard = () => {
@@ -14,6 +15,7 @@ const AdminDashboard = () => {
     const [expandedLeader, setExpandedLeader] = useState(null);
     const [modalUser, setModalUser] = useState(null);
     const [actionType, setActionType] = useState(null);
+      const [selectedUserId, setSelectedUserId] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -166,6 +168,15 @@ const AdminDashboard = () => {
                                                 >
                                                     <img className='w-5 h-5' src="/withdraw.png" alt="withdraw-logo" />
                                                 </span>
+                                                <span
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setSelectedUserId(leader);
+                                                    }}
+                                                    className="cursor-pointer text-blue-700 underline ml-2"
+                                                >
+                                                    📄 View Details
+                                                </span>
                                             </td>
                                         </tr>
                                         {expandedLeader === leader._id && assignedUsers.length > 0 && (
@@ -233,6 +244,15 @@ const AdminDashboard = () => {
                                                                             >
                                                                                 <img className='w-5 h-5' src="/withdraw.png" alt="withdraw-logo" />
                                                                             </span>
+                                                                            <span
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setSelectedUserId(leader);
+                                                    }}
+                                                    className="cursor-pointer text-blue-700 underline ml-2"
+                                                >
+                                                    📄 View Details
+                                                </span>
 
                                                                         </td>
                                                                     </tr>
@@ -303,6 +323,12 @@ const AdminDashboard = () => {
                             fetchUsers={fetchUsers}
                         />
                     )}
+                    {selectedUserId && (
+                <UserDetailsModal
+                    userId={selectedUserId}
+                    onClose={() => setSelectedUserId(null)}
+                />
+                )}
 
                 </div>
             </div>
