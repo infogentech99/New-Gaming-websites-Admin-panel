@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  font-family: 'Figtree', sans-serif;
+}
+
+/* Hide the scrollbar completely while still allowing scrolling */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, and Opera */
+}
+
+/* Smooth scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+.card-container {
+  @apply bg-base-100 w-80 shadow-sm border-2 border-purple-950 shadow-purple-900;
+}
+
+.toastBody {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.7rem;
+
+}

@@ -1,0 +1,20 @@
+[{
+  "_id" : "677adb090a0190eb3171384f",
+  "user" : {
+    "_id": "6779495c75467b4f5490a932",
+    "username": "Deepak",
+    "email": "Deepak@gmail.com",
+    "password": "$2b$10$z3maQaVA.eaoRthrWkDR1OX9JGu7dsAhZcoQYCPZ/zZaWUiXzuCMK",
+    "profilepic": "default.webp",
+    "posts": [],
+    "savePost": [],
+    "__v": 0
+  },
+  "content": "abe ye ho kyu nhi rha bsdk",
+  "likes": [],
+  "date": {
+    "$date": "2025-01-05T19:18:33.171Z"
+  },
+  "__v": 0
+}]
+
