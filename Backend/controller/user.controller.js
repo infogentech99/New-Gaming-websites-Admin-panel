@@ -74,7 +74,14 @@ export const login = async (req,res)=>{
 
   // Generate a JWT token
   const token = jwt.sign({ email: email, userid: user._id }, 'Screate');
-  res.cookie('token', token, { httpOnly: true });
+  // res.cookie('token', token, { httpOnly: true });
+
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'None',
+});
+
 
   const Updateduser = await User.findOne({ email }).populate('walletId');
 
